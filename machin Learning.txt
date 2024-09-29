@@ -1,0 +1,545 @@
+machin Learning
+     Machine Learning is making the computer learn from studying data and statistics.
+     Machine Learning is a step into the direction of artificial intelligence (AI).
+     Machine Learning is a program that analyses data and learns to predict the outcome.
+
+     Data Set
+     In the mind of a computer, a data set is any collection of data. It can be anything from an array to a complete   
+     -database.
+
+     Data Types
+     We can split the data types into three main categories:
+
+     Numerical
+     Categorical
+     Ordinal
+
+     Numerical data are numbers, and can be split into two numerical categories:
+     Discrete Data
+     - counted data that are limited to integers. Example: The number of cars passing by.
+     Continuous Data
+     - measured data that can be any number. Example: The price of an item, or the size of an item
+     Categorical data are values that cannot be measured up against each other. Example: a color value, or any      
+     -yes/no values.
+
+    Ordinal data are like categorical data, but can be measured up against each other. Example: school grades         
+    where A is better than B and so on.
+
+    By knowing the data type of your data source, you will be able to know what technique to use when analyzing   
+    them.
+
+Machine Learning - Mean Median Mode
+    In Machine Learning (and in mathematics) there are often three values that interests us:
+    Mean - The average value
+    Median - The mid point value
+    Mode - The most common value
+   
+    Example: We have registered the speed of 13 cars: speed = [99,86,87,88,111,86,103,87,94,78,77,85,86]
+    mean: speed/13 = 89.76, median: 87, mode: x = stats.mode(speed) = 86. from scipy import stats
+   
+    The Mean, Median, and Mode are techniques that are often used in Machine Learning, so it is important to    
+    -understand the concept behind them.
+
+Machine Learning - Standard Deviation
+     Standard deviation is a number that describes how spread out the values are.
+     A low standard deviation means that most of the numbers are close to the mean (average) value.
+     A high standard deviation means that the values are spread out over a wider range.
+     Example: This time we have registered the speed of 7 cars: speed = [86,87,88,86,87,85,86]
+     The standard deviation is: 0.9. Meaning that most of the values are within the range of 0.9 from the mean 
+     value, which is 86.4.
+
+     Use the NumPy std() method to find the standard deviation:
+     x = numpy.std(speed)
+
+     Variance
+     Variance is another number that indicates how spread out the values are.
+     In fact, if you take the square root of the variance, you get the standard deviation!
+     Or the other way around, if you multiply the standard deviation by itself, you get the variance!
+     To calculate the variance you have to do as follows:
+     x = numpy.var(speed)
+     The variance is the average number of all squared differences that we find of each value from the mean value:
+
+    Symbols
+    Standard Deviation is often represented by the symbol Sigma: σ
+    Variance is often represented by the symbol Sigma Squared: σ2
+
+Machine Learning - Percentiles
+    Percentiles are used in statistics to give you a number that describes the value that a given percent of the   
+    values are lower than.
+    Example: Let's say we have an array of the ages of all the people that live in a street.
+    ages = [5,31,43,48,50,41,7,11,15,39,80,82,32,2,8,6,25,36,27,61,31]
+    meaning that 75% of the people are 43 or younger.
+    x = numpy.percentile(ages, 75). we gave 75 because to know what is 75% of the value.
+    x = numpy.percentile(ages, 90). here we want to know what is 90% of people is and younger then.
+
+Machine Learning - Data Distribution
+    To create big data sets for testing, we use the Python module NumPy, which comes with a number of methods to   
+    create random data sets, of any size.
+    Create an array containing 250 random floats between 0 and 5:
+    x = numpy.random.uniform(0.0, 5.0, 250)
+    we learned how to create a completely random array, of a given size, and between two given values.
+
+    Histogram
+    To visualize the data set we can draw a histogram with the data we collected.
+    x = numpy.random.uniform(0.0, 5.0, 250)
+    plt.hist(x, 5)
+    We use the array from the example above to draw a histogram with 5 bars.
+    The first bar represents how many values in the array are between 0 and 1.
+    The second bar represents how many values are between 1 and 2.
+
+Machine Learning - Normal Data Distribution
+    In this chapter we will learn how to create an array where the values are concentrated around a given value.
+    x = numpy.random.normal(5.0, 1.0, 100000)
+    plt.hist(x, 100)
+    We specify that the mean value is 5.0, and the standard deviation is 1.0.
+    And as you can see from the histogram, most values are between 4.0 and 6.0, with a top at approximately 5.0.
+
+Machine Learning - Scatter Plot
+    A scatter plot is a diagram where each value in the data set is represented by a dot.
+    t needs two arrays of the same length, one for the values of the x-axis, and one for the values of the y-axis:
+    x = [5,7,8,7,2,17,2,9,4,11,12,9,6]
+    y = [99,86,87,88,111,86,103,87,94,78,77,85,86]
+    plt.scatter(x, y)
+    It seems that the newer the car, the faster it drives, but that could be a coincidence, after all we only registered 13 cars.
+    we can use normal ditribution to test big data in scatter to se how it looks
+
+Machine Learning - Linear Regression
+    The term regression is used when you try to find the relationship between variables.
+    In Machine Learning, and in statistical modeling, that relationship is used to predict the outcome of future events.
+    Linear regression uses the relationship between the data-points to draw a straight line through all them.
+    This line can be used to predict future values.
+    Start by drawing a scatter plot: of 13 cars that represent the speed and age of the car.
+     
+    x = [5,7,8,7,2,17,2,9,4,11,12,9,6]
+    y = [99,86,87,88,111,86,103,87,94,78,77,85,86]
+
+    slope, intercept, r, p, std_err = stats.linregress(x, y)
+
+    def myfunc(x):
+      return slope * x + intercept
+    Create a function that uses the slope and intercept values to return a new value. This new value represents where on the y-axis the corresponding x     
+    -value will be placed:
+
+    mymodel = list(map(myfunc, x))
+    Run each value of the x array through the function. This will result in a new array with new values for the y-axis:
+
+    plt.scatter(x, y)
+    plt.plot(x, mymodel)
+
+    if there are no relationship the linear regression can not be used to predict anything.
+
+    R for Relationship
+    This relationship - the coefficient of correlation - is called r.
+    The r value ranges from -1 to 1, where 0 means no relationship, and 1 (and -1) means 100% related.
+    x = [5,7,8,7,2,17,2,9,4,11,12,9,6]
+    y = [99,86,87,88,111,86,103,87,94,78,77,85,86]
+    slope, intercept, r, p, std_err = stats.linregress(x, y)
+    print(r)
+
+    Predict Future Values
+    Predict the speed of a 10 years old car:
+    x = [5,7,8,7,2,17,2,9,4,11,12,9,6]
+    y = [99,86,87,88,111,86,103,87,94,78,77,85,86]
+
+    slope, intercept, r, p, std_err = stats.linregress(x, y)
+
+    def myfunc(x):
+      return slope * x + intercept
+
+    speed = myfunc(10)
+
+    print(speed)
+
+    Bad Fit?
+    Let us create an example where linear regression would not be the best method to predict future values.
+    
+Machine Learning - Polynomial Regression
+     If your data points clearly will not fit a linear regression (a straight line through all data points), it might be ideal for polynomial regression.
+     Polynomial regression, like linear regression, uses the relationship between the variables x and y to find the best way to draw a line through the data 
+     -points.
+
+     Start by drawing a scatter plot:
+     x = [1,2,3,5,6,7,8,9,10,12,13,14,15,16,18,19,21,22]
+     y = [100,90,80,60,60,55,60,65,70,70,75,76,78,79,90,99,99,100]
+
+     Import numpy and matplotlib then draw the line of Polynomial Regression:
+     mymodel = numpy.poly1d(numpy.polyfit(x, y, 3))
+     NumPy has a method that lets us make a polynomial model:
+     Then specify how the line will display, we start at position 1, and end at position 22:
+     myline = numpy.linspace(1, 22, 100)
+
+     plt.scatter(x, y)
+     plt.plot(myline, mymodel(myline))
+   
+     R-Squared
+     Python and the Sklearn module will compute this value for you, all you have to do is feed it with the x and y arrays:
+     mymodel = numpy.poly1d(numpy.polyfit(x, y, 3))
+     print(r2_score(y, mymodel(x)))
+
+
+     Predict Future Values
+     mymodel = numpy.poly1d(numpy.polyfit(x, y, 3))
+     speed = mymodel(17)
+
+     Bad Fit?
+     x = [89,43,36,36,95,10,66,34,38,20,26,29,48,64,6,5,36,66,72,40]
+     y = [21,46,3,35,67,95,53,72,58,10,26,34,90,33,38,20,56,2,47,15]
+
+Machine Learning - Multiple Regression
+     Multiple regression is like linear regression, but with more than one independent value, meaning that we try to predict a value based on two or more   
+     variables.
+     example: We can predict the CO2 emission of a car based on the size of the engine, but with multiple regression we can throw in more variables, like 
+     -the weight of the car, to make the prediction more accurate.
+
+     Start by importing the Pandas module
+     Then make a list of the independent values as we need to predict and call this variable X. example: X = df[['Weight', 'Volume']]
+     Put the dependent values in a variable called y. y = df['CO2']
+     
+     We will use some methods from the sklearn module. from sklearn import linear_model
+     From the sklearn module we will use the LinearRegression() method to create a linear regression object.
+     This object has a method called fit() that takes the independent and dependent values as parameters and fills the regression object with data that    
+     -describes the relationship:
+     regr = linear_model.LinearRegression()
+     regr.fit(X, y)
+     predictedCO2 = regr.predict([[2300, 1300]])
+     print(predictedCO2)
+
+     Coefficient
+     The coefficient is a factor that describes the relationship with an unknown variable.
+     In this case, we can ask for the coefficient value of weight against CO2, and for volume against CO2. The answer(s) we get tells us what would happen         
+     if we increase, or decrease, one of the independent values.
+     regr.fit(X, y)
+     print(regr.coef_)
+
+Machine Learning - Scale
+     When your data has different values, and even different measurement units, it can be difficult to compare them. What is kilograms compared to meters?
+     The answer to this problem is scaling. We can scale data into new values that are easier to compare.
+     There are different methods for scaling data, in this tutorial we will use a method called standardization.
+     The standardization method uses this formula:  z = (x - u) / s
+     Where z is the new value, x is the original value, u is the mean and s is the standard deviation.
+     The Python sklearn module has a method called StandardScaler() which returns a Scaler object with methods for transforming data sets.
+     X = df[['Weight', 'Volume']]
+     scaledX = scale.fit_transform(X)
+     print(scaledX)
+
+     X = df[['Weight', 'Volume']]
+     y = df['CO2']
+
+     scaledX = scale.fit_transform(X)
+
+     regr = linear_model.LinearRegression()
+     regr.fit(scaledX, y)
+
+     scaled = scale.transform([[2300, 1.3]])
+
+     predictedCO2 = regr.predict([scaled[0]])
+     print(predictedCO2)
+
+Machine Learning - Train/Test
+     To measure if the model is good enough, we can use a method called Train/Test.
+     Train/Test is a method to measure the accuracy of your model.
+     It is called Train/Test because you split the data set into two sets: a training set and a testing set.
+
+     Train the model means create the model.
+     Test the model means test the accuracy of the model.
+
+     numpy.random.seed(2)
+
+     x = numpy.random.normal(3, 1, 100)
+     y = numpy.random.normal(150, 40, 100) / x
+
+     plt.scatter(x, y)
+     plt.show()
+
+    train_x = x[:80]
+    train_y = y[:80]
+
+    test_x = x[80:]
+    test_y = y[80:]
+    plt.scatter(test_x, test_y)
+    plt.show()
+
+    mymodel = numpy.poly1d(numpy.polyfit(train_x, train_y, 4))
+    myline = numpy.linspace(0, 6, 100)
+
+   plt.scatter(train_x, train_y)
+   plt.plot(myline, mymodel(myline))
+   plt.show()
+
+   to find the relashinshape
+   mymodel = numpy.poly1d(numpy.polyfit(train_x, train_y, 4))
+   r2 = r2_score(train_y, mymodel(train_x))
+   print(r2)
+
+   Predict Values
+   print(mymodel(5))
+
+
+Machine Learning - Decision Tree
+   A Decision Tree is a Flow Chart, and can help you make decisions based on previous experience.
+   example, a person will try to decide if he/she should go to a comedy show or not.
+   To make a decision tree, all data has to be numerical.
+   We have to convert the non numerical columns 'Nationality' and 'Go' into numerical values.
+   Pandas has a map() method that takes a dictionary with information on how to convert the values.
+
+   d = {'UK': 0, 'USA': 1, 'N': 2}
+   df['Nationality'] = df['Nationality'].map(d)
+   d = {'YES': 1, 'NO': 0}
+   df['Go'] = df['Go'].map(d)
+
+   Then we have to separate the feature columns from the target column.
+   The feature columns are the columns that we try to predict from, and the target column is the column with the values we try to predict.
+
+   features = ['Age', 'Experience', 'Rank', 'Nationality']
+   X = df[features]
+   y = df['Go']
+
+   dtree = DecisionTreeClassifier()
+   dtree = dtree.fit(X, y)
+
+   tree.plot_tree(dtree, feature_names=features)
+
+   Rank
+   Rank <= 6.5 means that every comedian with a rank of 6.5 or lower will follow the True arrow (to the left), and the rest will follow the False arrow (to    
+   -the right).
+   Gini = 0.497 refers to the quality of the split, and is always a number between 0.0 and 0.5, where 0.0 would mean all of the samples got the same result,     
+   -and 0.5 would mean that the split is done exactly in the middle.
+   Samples = 13 means that there are 13 comedians left at this point in the decision, which is all of them since this is the first step.
+   Value = [6, 7] means that of these 13 comedians, 6 will get a "NO", and 7 will get a "GO".
+
+   print(dtree.predict([[40, 10, 7, 1]])), 1 means go, 0 means no
+   What would the answer be if the comedy rank was 6?
+   print(dtree.predict([[40, 10, 6, 1]]))
+
+   You will see that the Decision Tree gives you different results if you run it enough times, even if you feed it with the same data
+
+Machine Learning - Confusion Matrix
+   It is a table that is used in classification problems to assess where errors in the model were made.
+   The rows represent the actual classes the outcomes should have been. While the columns represent the predictions we have made. 
+
+   Creating a Confusion Matrix
+   Confusion matrixes can be created by predictions made from a logistic regression.
+   In order to create the confusion matrix we need to import metrics from the sklearn module.
+   To create a more interpretable visual display we need to convert the table into a confusion matrix display.
+  
+   actual = numpy.random.binomial(1,.9,size = 1000)
+   predicted = numpy.random.binomial(1,.9,size = 1000)
+
+   confusion_matrix = metrics.confusion_matrix(actual, predicted)
+
+   cm_display = metrics.ConfusionMatrixDisplay(confusion_matrix = confusion_matrix, display_labels = [0, 1])
+
+   cm_display.plot()
+   plt.show()
+
+   Now that we have made a Confusion Matrix, we can calculate different measures to quantify the quality of the model
+   True means that the values were accurately predicted, False means that there was an error or wrong prediction.
+   Ju högre true är destu bättre är modulen. Ju mindre är falsen desto mindre gisar modulen fel
+
+   Created Metrics
+   The matrix provides us with many useful metrics that help us to evaluate out classification model.
+   The different measures include: Accuracy, Precision, Sensitivity (Recall), Specificity, and the F-score, explained below.
+
+   Accuracy
+   Accuracy measures how often the model is correct.
+   actual = numpy.random.binomial(1,.9,size = 1000)
+   predicted = numpy.random.binomial(1,.9,size = 1000)
+   Accuracy = metrics.accuracy_score(actual, predicted)
+   print(Accuracy)
+   real som real och spam som splam, hur ofta gisar den rätt oavsett vilken typ
+
+   Precision
+   Of the positives predicted, what percentage is truly positive?
+   actual = numpy.random.binomial(1,.9,size = 1000)
+   predicted = numpy.random.binomial(1,.9,size = 1000)
+   Precision = metrics.precision_score(actual, predicted)
+
+   Den används för att se hur ofta gisar modulen rätt om för example en mail är inte spam med det ser den som en spam. Hör resultat innebär att det är_
+   -inte så många mial som blir fel räknade. en real räknades som spam
+
+   Sensitivity (Recall)
+   Of all the positive cases, what percentage are predicted positive?
+   Sensitivity is good at understanding how well the model predicts something is positive:
+   actual = numpy.random.binomial(1,.9,size = 1000)
+   predicted = numpy.random.binomial(1,.9,size = 1000)
+   Sensitivity_recall = metrics.recall_score(actual, predicted)
+
+   Om resultaten är hög innebär det att spam mailen gisades rätt och det var inte så många real mial som gisades fell.
+   OM spam räknades som reail 
+
+   Specificity
+   How well the model is at prediciting negative results?
+   Specificity is similar to sensitivity, but looks at it from the persepctive of negative results.
+   actual = numpy.random.binomial(1,.9,size = 1000)
+   predicted = numpy.random.binomial(1,.9,size = 1000)
+   Specificity = metrics.recall_score(actual, predicted, pos_label=0)
+
+   F-score
+   F-score is the "harmonic mean" of precision and sensitivity.
+   It considers both false positive and false negative cases and is good for imbalanced datasets.
+   actual = numpy.random.binomial(1,.9,size = 1000)
+   predicted = numpy.random.binomial(1,.9,size = 1000)
+   F1_score = metrics.f1_score(actual, predicted)
+
+Machine Learning - Hierarchical Clustering
+   Hierarchical clustering is an unsupervised learning method for clustering data points. The algorithm builds clusters by measuring the dissimilarities     
+   between data. Unsupervised learning means that a model does not have to be trained, and we do not need a "target" variable. This method can be used on   
+   any data to visualize and interpret the relationship between individual data points.
+
+   Den används för att delar information i olika delar och vi delar olika saker som har gemensam sak i en group. för example vi har olika länder och vi ska-
+   - delar de beronde var de ligger, de som ligger i Asien ligger i samma group och de som i eroupa ligger i gruop eropa och båda grouper ligger i samma-
+   - grop. den sätt att vissa kallas dendrogram.
+
+   import numpy as np
+   import matplotlib.pyplot as plt
+   from scipy.cluster.hierarchy import dendrogram, linkage
+
+   x = [4, 5, 10, 4, 3, 11, 14 , 6, 10, 12]
+   y = [21, 19, 24, 17, 16, 25, 24, 22, 21, 21]
+   # Turn the data into a set of points:
+   data = list(zip(x, y))
+
+   # Here we use a simple euclidean distance measure and Ward's linkage, which seeks to minimize the variance between clusters.
+   linkage_data = linkage(data, method='ward', metric='euclidean')
+   dendrogram(linkage_data)
+
+   plt.show()
+
+Machine Learning - Logistic Regression
+    Logistic regression aims to solve classification problems. It does this by predicting categorical outcomes, unlike linear regression that predicts a     
+    continuous outcome.
+
+    In the simplest case there are two outcomes, which is called binomial, an example of which is predicting if a tumor is malignant or benign. Other cases     
+    have more than two outcomes to classify, in this case it is called multinomial. A common example for multinomial logistic regression would be predicting     
+    the class of an iris flower between 3 different species.
+
+    X has to be reshaped into a column from a row for the LogisticRegression() function to work
+
+    From the sklearn module we will use the LogisticRegression() method to create a logistic regression object.
+
+    coeffecient
+    log_odds = logr.coef_
+    odds = numpy.exp(log_odds)
+    print(odds)
+    # This tells us that as the size of a tumor increases by 1mm the odds of it being a cancerous tumor increases by 4x.
+
+    Probability
+    def logit2prob(logr,x):
+    log_odds = logr.coef_ * x + logr.intercept_
+    odds = numpy.exp(log_odds)
+    probability = odds / (1 + odds)
+    return(probability)
+
+Machine Learning - Grid Search
+    The majority of machine learning models contain parameters that can be adjusted to vary how the model learns.
+    How do we pick the best value for the parameter? The best value is dependent on the data used to train the model.
+
+    One method is to try out different values and then pick the value that gives the best score. This technique is known as a grid search. If we had to    
+    select the values for two or more parameters, we would evaluate all combinations of the sets of values thus forming a grid of values.
+
+    from sklearn import datasets
+    from sklearn.linear_model import LogisticRegression
+
+    iris = datasets.load_iris()
+
+    X = iris['data']
+    y = iris['target']
+
+    logit = LogisticRegression(max_iter = 10000)
+
+    print(logit.fit(X,y))
+
+    print(logit.score(X,y))
+
+    Grid search
+    logit = LogisticRegression(max_iter = 10000)
+
+    C = [0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2]
+
+   scores = []
+
+   for choice in C:
+      logit.set_params(C=choice)
+      logit.fit(X, y)
+      scores.append(logit.score(X, y))
+
+    print(scores)
+
+   We scored our logistic regression model by using the same data that was used to train it. If the model corresponds too closely to that data, it may not 
+   be great at predicting unseen data. This statistical error is known as over fitting.
+
+Preprocessing - Categorical Data
+    When your data has categories represented by strings, it will be difficult to use them to train machine learning models which often only accepts numeric   
+    -data.
+   you can tranform the data so it can be used in your models.
+   A linear relationship between a categorical variable, Car or Model, and a numeric variable, CO2, cannot be determined.
+   For each column, the values will be 1 or 0 where 1 represents the inclusion of the group and 0 represents the exclusion. This transformation is called        
+   -one hot encoding. this will created a column for every car brand in the Car column.
+
+   import pandas as pd
+   colors = pd.DataFrame({'color': ['blue', 'red', 'green']})
+   dummies = pd.get_dummies(colors, drop_first=True)
+   dummies['color'] = colors['color']
+   print(dummies)
+
+   import pandas
+   from sklearn import linear_model
+   cars = pandas.read_csv("data.csv")
+   ohe_cars = pandas.get_dummies(cars[['Car']])
+   X = pandas.concat([cars[['Volume', 'Weight']], ohe_cars], axis=1)
+   y = cars['CO2']
+   regr = linear_model.LinearRegression()
+   regr.fit(X,y)
+   ##predict the CO2 emission of a Volvo where the weight is 2300kg, and the volume is 1300cm3:
+   predictedCO2 = regr.predict([[2300, 1300,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0]])
+   print(predictedCO2)
+
+Machine Learning - K-means
+   K-means is an unsupervised learning method for clustering data points. The algorithm iteratively divides data points into K clusters by minimizing the    
+   -variance in each cluster.
+   Vi vläjer några central poägter ut delat mellan olika datapongter, central pöngterna ändras så mycket tills de hämnar i bästa läge där de har-
+   - delat ut sig bland datapongter.
+   find the value for k by using elbow method
+
+
+   from sklearn.cluster import KMeans
+   data = list(zip(x, y))
+   inertias = []
+   # In order to find the best value for K, we need to run K-means across our data for a range of possible values. We only have 10 data points, so the     
+   -maximum number of clusters is 10. So for each value K in range(1,11), we train a K-means model and plot the intertia at that number of clusters
+   for i in range(1,11):
+     kmeans = KMeans(n_clusters=i)
+     kmeans.fit(data)
+     inertias.append(kmeans.inertia_)
+   plt.plot(range(1,11), inertias, marker='o')
+   plt.title('Elbow method')
+   plt.xlabel('Number of clusters')
+   plt.ylabel('Inertia')
+   plt.show()
+
+   from sklearn.cluster import KMeans
+   x = [4, 5, 10, 4, 3, 11, 14 , 6, 10, 12]
+   y = [21, 19, 24, 17, 16, 25, 24, 22, 21, 21]
+   data = list(zip(x, y))
+   kmeans = KMeans(n_clusters=2)
+   kmeans.fit(data)
+   plt.scatter(x, y, c=kmeans.labels_)
+   plt.show()
+
+Machine Learning - Bootstrap Aggregation (Bagging)
+    
+    Bootstrap Aggregation (bagging) is a ensembling method that attempts to resolve overfitting for classification or regression problems. Bagging aims to     
+    improve the accuracy and performance of machine learning algorithms. It does this by taking random subsets of an original dataset, with replacement, and   
+    fits either a classifier (for classification) or regressor (for regression) to each subset. The predictions for each subset are then aggregated through 
+    majority vote for classification or averaging for regression, increasing prediction accuracy.
+
+    from sklearn import datasets
+    from sklearn.model_selection import train_test_split
+    from sklearn.ensemble import BaggingClassifier
+    data = datasets.load_wine()
+    X = data.data
+    y = data.target
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.25, random_state = 22)
+    oob_model = BaggingClassifier(n_estimators = 12, oob_score = True,random_state = 22)
+    oob_model.fit(X_train, y_train)
+    print(oob_model.oob_score_)

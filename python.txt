@@ -1,0 +1,112 @@
+python 
+     Python is an object oriented programming language.
+     Almost everything in Python is an object, with its properties and methods.
+     A Class is like an object constructor, or a "blueprint" for creating objects.
+
+if-statment
+    conditions from mathematics:
+
+while 
+   With the while loop we can execute a set of statements as long as a condition is true.
+   With the continue statement we can stop the current iteration, and continue with the next:
+
+for 
+   A for loop is used for iterating over a sequence (that is either a list, a tuple, a dictionary, a set, or a   
+   -string).
+   If you put the break where you want to show the element or not
+   for in to diffirent Array.
+
+function
+   A function is a block of code which only runs when it is called.
+   You can pass data, known as parameters, into a function.
+   A function can return data as a result.
+   To call a function, use the function name followed by parenthesis:
+   Information can be passed into functions as arguments.
+   A parameter is the variable listed inside the parentheses in the function definition.
+
+   Arbitrary Arguments, *args
+   def lik(*naem) or def lik(*naem). then you can gave how many argument you want
+   To specify that a function can have only keyword arguments, add *, before the arguments:
+
+lambda
+   A lambda function is a small anonymous function.
+   A lambda function can take any number of arguments, but can only have one expression
+   The power of lambda is better shown when you use them as an anonymous function inside another function.
+   def myfunc(n):
+     return lambda a : a * n
+
+array
+   Arrays are used to store multiple values in one single variable: in-built function 
+
+class 
+   A class has propertie
+   Use the __init__() function to assign values to object properties, or other operations that are necessary to do 
+   when the object is being created:
+
+self
+    The self parameter is a reference to the current instance of the class, and is used to access variables that 
+    belong to the class.
+
+object
+    We can use a class to creat a object ex: name = class() then print(name.x) x is class properties
+    Objects can also contain methods. Methods in objects are functions that belong to the object.
+    def myfunc(self):
+    print("Hello my name is " + self.name)
+
+Modify Object Properties
+    p1.age = 40  change the value
+    del p1.age  delete a value
+    del p1      delete the object
+
+Python Inheritance
+    Inheritance allows us to define a class that inherits all the methods and properties from another class.
+    Parent class is the class being inherited from, also called base class.
+    Child class is the class that inherits from another class, also called derived class.
+    Use the pass keyword when you do not want to add any other properties or methods to the class.
+    Python also has a super() function that will make the child class inherit all the methods and properties from 
+    its parent:
+
+Python Iterators
+    An iterator is an object that contains a countable number of values.
+    Lists, tuples, dictionaries, and sets are all iterable objects. They are iterable containers which you can get an iterator from.
+
+Python Polymorphism
+      The word "polymorphism" means "many forms", and in programming it refers to methods/functions/operators with 
+      the same name that can be executed on many objects or classes.
+      Polymorphism is often used in Class methods, where we can have multiple classes with the same method name.
+      we can also use it in Child class with the same name. 
+      Inheritance Class Polymorphism
+
+Local Scope
+     A variable created inside a function belongs to the local scope of that function, and can only be used inside    
+     that function. but it is available for any function inside the function:
+     by using global keyword we acces to variable inside a function and change the variable outside of a fuction.
+     The nonlocal keyword is used to work with variables inside nested functions.
+ 
+What is a Module?
+    Consider a module to be the same as a code library.
+    A file containing a set of functions you want to include in your application.
+
+list of function
+   if you want to know which functin ther is in a library or module use dir()
+
+Python Datetime
+    x = datetime.datetime.now()
+    print(x.year)
+    print(x.strftime("%A"))weekday, %B = monthday
+    x = datetime.datetime(2020, 5, 17)
+
+Python Math
+    min, max, abs, pow, then math module = sqrt, ceil, floor, pi, 
+
+JSON in Python
+    Python has a built-in package called json, which can be used to work with JSON data., dumps to json, loads
+    You can convert Python objects like list, tuple, set, dic, True, False into JSON strings:
+    A dic is a object in json and tuple, list is Array in Json
+    print(json.dumps(x, indent=4, separators=(". ", " = ")))
+    json.dumps(x, indent=4, sort_keys=True) if you use it vill sort the json
+
+RegEx in Python
+    we import to use if we want to find a specifi of a value. import re
+    txt = "The rain in Spain"
+    x = re.search("^The.*Spain$", txt)

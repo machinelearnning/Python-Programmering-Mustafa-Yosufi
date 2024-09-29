@@ -1,0 +1,5 @@
+English word
+implement
+broadcasting
+accumulate
+computation.

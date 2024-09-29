@@ -1,0 +1,10 @@
+guestion 
+
+what is numby random?
+what is random permutaion?
+what is seaborn ?
+whtat is normal ditribution?
+what is binomial distribution? 
+what is logistic distribution?
+what is poisson distribution?
+ehat is uniform distribution?

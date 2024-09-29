@@ -1,0 +1,52 @@
+why machine inlearning
+    shorter time
+    no koplex rols
+    no uppdating
+    more accurate
+    adapt after new ruls
+    can learn komplixruls like voice recognistion
+    it help us to see thing like we can not see
+    help us to discover new patterns from larg data, called data mining
+
+supervis 
+        supervised Learning models tend to be more accurate than unsupervised Learning models.
+
+       clasification    ==         linear classifier, support vector Machines, decision trees, random forests
+               clasify
+       regresion       ==          linear regression, logistic regression, 
+               predict
+
+unsupervis 
+        often this technique is used in the pre-processing data stage. 
+        unsupervised Learning models work on their own to discover the structure of unlabeled data. for example an unsupervised Learning model can cluster
+        -images by the objects they contain. things like people and animals and building.
+        unsupervised Learning models dont make predictions. they only group data together.
+        unsupervised Learning can be used to find hidden patterns in data that supervised Learning would not find.
+
+       cluster
+             gruop of similar interst, similar experience, 
+       visualiziation
+             gave you 2D or 3D
+       demensionality reduction 
+             simplyfiy 
+       anomaly detection
+             normal or not
+       acocition rule Learning
+             discover interst relations, are often use in market basket analysis where businesses want to know which items are often bought together.
+             ex. when you buy some item in the internet it recomend you of Another item.
+
+semisupervise
+       it use to be helpful with Medical images when you can gave a pecture to see which tomur or dissess it is.
+       Deep belief networks
+
+Reinforcement Learning
+      to get the most reward
+
+batch-learning
+      all data needs to train, does not learn incrementally
+
+onlin-learning
+      It learn incremententally
+
+
+

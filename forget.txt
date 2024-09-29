@@ -1,0 +1,7 @@
+forget
+
+how to find some rows by using loc.
+how to delete some wrong data in som columns by using dropna
+how to replace a value in some specific ceil by using loc
+how to use for-loop to repalce och delete the wrong data in some column 
+how to use show the correlation in gragh

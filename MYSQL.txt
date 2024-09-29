@@ -1,0 +1,103 @@
+MYSQL
+     MySQL is one of the most popular databases
+     Create Connection
+     Start by creating a connection to the database.
+    
+Creating a Database
+     mycursor = mydb.cursor()
+     ("CREATE DATABASE mydatabase")
+     mycursor.execute("SHOW DATABASES")
+     for x in mycursor:
+        print(x)
+
+
+Creating a Table
+     To create a table in MySQL, use the "CREATE TABLE" statement.'
+     mycursor.execute("CREATE TABLE customers (name VARCHAR(255), address VARCHAR(255))")
+
+     Primary Key
+     When creating a table, you should also create a column with a unique key for each record.
+     This can be done by defining a PRIMARY KEY.
+     ex: mycursor.execute("CREATE TABLE customers (id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(255), address VARCHAR(255))")
+     if the table allredy exist: mycursor.execute("ALTER TABLE customers ADD COLUMN id INT AUTO_INCREMENT PRIMARY KEY")
+
+Insert Into Table
+     To fill a table in MySQL, use the "INSERT INTO" statement.
+
+     sql = "INSERT INTO customers (name, address) VALUES (%s, %s)"
+     val = ("John", "Highway 21")
+     mycursor.execute(sql, val)
+     mydb.commit()
+     print(mycursor.rowcount, "record inserted.")
+
+     Insert Multiple Rows
+     use: mycursor.executemany(sql, val) instead of mycursor.execute(sql, val)
+  
+     Get Inserted ID
+     You can get the id of the row you just inserted by asking the cursor object.
+     print("1 record inserted, ID:", mycursor.lastrowid)
+
+Select From a Table
+     To select from a table in MySQL, use the "SELECT" statement:
+     mycursor.execute("SELECT * FROM customers")
+     myresult = mycursor.fetchall()
+     for x in myresult:
+        print(x)
+     We use the fetchall() method, which fetches all rows from the last executed statement.
+
+     Selecting Columns
+     mycursor.execute("SELECT name, address FROM customers")
+     myresult = mycursor.fetchall()
+  
+     first rows
+     If you are only interested in one row, you can use the fetchone() method.
+     mycursor.execute("SELECT * FROM customers")
+     myresult = mycursor.fetchone()
+     print(myresult)
+
+MySQL Where
+     When selecting records from a table, you can filter the selection by using the "WHERE" statement
+     sql = "SELECT * FROM customers WHERE address ='Park Lane 38'"
+     mycursor.execute(sql)
+     myresult = mycursor.fetchall()
+     for x in myresult:
+         print(x)
+
+     Wildcard Characters
+     sql = "SELECT * FROM customers WHERE address LIKE '%way%'"
+
+     Prevent SQL Injection
+     sql = "SELECT * FROM customers WHERE address = %s"
+     adr = ("Yellow Garden 2", )
+     mycursor.execute(sql, adr)
+
+MySQL Order By
+     Use the ORDER BY statement to sort the result in ascending(stigande)or descending(fallande) order.
+
+     sql = "SELECT * FROM customers ORDER BY name"
+     mycursor.execute(sql)
+     myresult = mycursor.fetchall()
+     for x in myresult:
+        print(x)
+
+    sql = "SELECT * FROM customers ORDER BY name DESC"
+
+MySQL Delete From By
+    You can delete records from an existing table by using the "DELETE FROM" statement:
+
+    sql = "DELETE FROM customers WHERE address = 'Mountain 21'"
+    mycursor.execute(sql)
+    mydb.commit()
+
+    Prevent SQL Injection
+    sql = "DELETE FROM customers WHERE address = %s"
+    adr = ("Yellow Garden 2", )
+
+MySQL Drop Table
+    You can delete an existing table by using the "DROP TABLE" statement:
+    sql = "DROP TABLE customers"
+    mycursor.execute(sql)
+
+    Drop Only if Exist
+    sql = "DROP TABLE IF EXISTS customers"
+    mycursor.execute(sql)

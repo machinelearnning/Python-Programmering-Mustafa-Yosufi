@@ -1,0 +1,4 @@
+eglish Word
+
+compute = beräkna 
+linkage = koplingar
