@@ -70,16 +70,20 @@ while True:
     x_input = x_input.replace(".", "").replace("-", "") # ta bort de karäktarer för att det skulle bli läsbar
     y_input = y_input.replace(".", "").replace("-", "")
 
-    if x_input.isdigit() == False or y_input.isdigit() == False:
+    if x_input.isdigit() == True and y_input.isdigit() == True:
+        width = float(width)
+        height = float(height)
+        if height > 0 and width > 0:
+            result = clasify_point(10, df["Width_cm"], df["Height_cm"], df["Pichu-0_pikachu-1"], width, height)
+            if result == 1:
+                print(f"({width},{height}): classified as Pikachu.")
+            else:
+                print(f"({width},{height}): classified as Pichu.")
+                break
+        elif height < 0 or width < 0:
+            print("You have entered a negative number")
+            print("Try again")
+    else:
         print("You have entered a character which is not a number")
         print("You need to enter a number. ex: 23 or 34.23")
-    
-    width = float(width)
-    height = float(height)
 
-    if height > 0 and width > 0:
-        print(clasify_point(10, df["Width_cm"], df["Height_cm"], df["Pichu-0_pikachu-1"], width, height))
-        break
-    elif height < 0 or width < 0:
-        print("You have entered a negative number")
-        print("Try again")
