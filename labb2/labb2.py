@@ -57,5 +57,29 @@ def clasify_point(maj, data_x , data_y,pic_pika, wid, hei):
         print("Enter 1 or 10")
         
 # köra test data med df som tränings data
-for x , y in zip(test_data["Width_cm"], test_data["Height_cm"]):
-    print(clasify_point(1, df["Width_cm"], df["Height_cm"], df["Pichu-0_pikachu-1"],x, y))
+predicton_testData = [(clasify_point(1, df["Width_cm"], df["Height_cm"], df["Pichu-0_pikachu-1"],x, y)) 
+                      for x , y in zip(test_data["Width_cm"], test_data["Height_cm"])] 
+
+while True:
+    x_input = input("Enter your first positiv numbers.")
+    y_input = input("Enter your second positiv numbers.")
+
+    width = x_input # används för att kontrolera om ett number är negativ
+    height = y_input
+
+    x_input = x_input.replace(".", "").replace("-", "") # ta bort de karäktarer för att det skulle bli läsbar
+    y_input = y_input.replace(".", "").replace("-", "")
+
+    if x_input.isdigit() == False or y_input.isdigit() == False:
+        print("You have entered a character which is not a number")
+        print("You need to enter a number. ex: 23 or 34.23")
+    
+    width = float(width)
+    height = float(height)
+
+    if height > 0 and width > 0:
+        print(clasify_point(10, df["Width_cm"], df["Height_cm"], df["Pichu-0_pikachu-1"], width, height))
+        break
+    elif height < 0 or width < 0:
+        print("You have entered a negative number")
+        print("Try again")
