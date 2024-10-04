@@ -97,10 +97,10 @@ print()
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import confusion_matrix
 
-x = df[["Width_cm", "Height_cm"]] # features
-y = df["Pichu-0_pikachu-1"] # label
+features = df[["Width_cm", "Height_cm"]] # features
+label = df["Pichu-0_pikachu-1"] # label
 
-x_train,y_train, x_test, y_test = train_test_split(x, y, random_state = 26, test_size = 0.333)
+x_train,y_train, x_test, y_test = train_test_split(features, label, random_state = 26, test_size = 0.333)
 # Dela upp  tränings data i test och tränings data.
 
 width_training = [x for x in x_train["Width_cm"]] # ordna deras index från noll 
