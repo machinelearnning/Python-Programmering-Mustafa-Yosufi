@@ -5,7 +5,7 @@ import numpy as np
 df = pd.read_csv("unlabelled_data.csv")
 df.columns = df.columns.str.replace("-1.885907518189583", "x_points").str.replace("-1.997407599218205", "y_points")
 
-x_points = [-4, 4]
+x_points = [-4, 4] 
 y_points = [-4, 4]
 
 lis = np.array(range(x_points[0], x_points[1]))
