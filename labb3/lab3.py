@@ -14,6 +14,8 @@ lis1 = np.array(range(y_points[0], y_points[1]))
 k_value = len(lis1)/len(lis)
 m_value = y_points[0] + (-1 * x_points[0] * k_value)
 
+df.to_csv("labelled_data.csv", index = False) 
+
 df["label"] = np.where(df["y_points"] > df["x_points"] * k_value + m_value, 0, 1)
 
 left_side = df[df["label"] == 0]
