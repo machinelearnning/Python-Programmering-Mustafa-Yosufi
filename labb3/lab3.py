@@ -16,6 +16,7 @@ m_value = y_points[0] + (-1 * x_points[0] * k_value)
 
 df.to_csv("labelled_data.csv", index = False) 
 
+# skapa en kolumn som ska innehålla om en rada klassificeras som noll eller ett.
 df["label"] = np.where(df["y_points"] > df["x_points"] * k_value + m_value, 0, 1)
 
 left_side = df[df["label"] == 0]

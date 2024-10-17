@@ -1,0 +1,10 @@
+pythons function 
+
+while, break, continuo
+for, range, pass
+Array,, len, append, remove, pop, Count, clear, extend, insert, index, reverse, sort
+def, lambda
+
+vad jag har lärt mig idag 29/6
+sum, nonlocal
+strftime()
