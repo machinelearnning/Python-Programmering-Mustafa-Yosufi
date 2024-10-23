@@ -1,12 +1,12 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
-
+# Filen är inte lämplig för direkt läsning med pandas. Med read_csv("data_points.txt", skiprows=1) hade det gått bättre
 df = pd.read_csv("datapoints.txt")
 df.columns = df.columns.str.replace("(", "").str.replace(")", "").str.strip().str.replace(" ", "_").str.capitalize()
 df["Pichu-0_pikachu-1"] = df["Label_0-pichu"]
 df = df.drop(["Label_0-pichu", "1-pikachu"], axis = 1)
-
+# Bättre hade varit att ha korrekt data i en gemensam dataframe och filtrera efter behov
 pikachu = df[df["Pichu-0_pikachu-1"] == 1] # Dela upp tränings data utifårn om det är 0 eller 1
 pichu = df[df["Pichu-0_pikachu-1"] == 0]
 
@@ -14,12 +14,13 @@ plt.scatter(x = pichu["Width_cm"], y = pichu["Height_cm"], color = "red")
 plt.scatter(x = pikachu["Width_cm"], y = pikachu["Height_cm"], color = "blue")
 plt.show
 
+# Mycket enklare hade varit att göra split(",") på raderna när du läser dem och få ut siffrorna direkt
 test_list = []
 with open("testpoints.txt", "r") as test_file:# spara test data rad för rad i en list
     fil = test_file.readlines()
     for line in fil:
         test_list.append(line)
-
+# Onödigt komplicerat-- fixa datan _innan_ pandas.
 test_data = pd.DataFrame(test_list, columns= ["test_d"]) # omvandla listen till en dataframe
 test_data = test_data.drop(0, axis = 0)                  # göra om data till lämplig struktur
 test_data["Width_cm"] = test_data["test_d"].str.split("(").str.get(1).str.split(",").str.get(0)
@@ -27,7 +28,8 @@ test_data["Height_cm"] = test_data["test_d"].str.split(")").str.get(0).str.split
 test_data = test_data.drop("test_d", axis= 1)
 test_data[["Height_cm", "Width_cm"]] = test_data[["Height_cm", "Width_cm"]].astype(float)
 
-
+# Denna borde ta emot en 'k' parameter istället för att hårdkoda 1 eller 10 via typ_metod
+# då blir funktionen generell för alla k och behöver inte ha någon särskild hantering för fallen.
 def clasify_point(typ_metod, data_x , data_y,pic_pika, wid, hei):
     points_distans =[(np.sqrt(np.power(x- wid, 2) + np.power(y- hei, 2))) 
                      for x, y in zip(data_x, data_y)]
@@ -44,6 +46,7 @@ def clasify_point(typ_metod, data_x , data_y,pic_pika, wid, hei):
     
     elif typ_metod == 10:
         sort_values = sorted(points_distans)
+        # detta borde var k istället för 10
         ten_values = sort_values[:10]
         index_lis_values = [points_distans.index(x) for x in ten_values]
         choose_maj = sum([pic_pika[x] for x in index_lis_values])
@@ -100,9 +103,11 @@ from sklearn.metrics import confusion_matrix
 features = df[["Width_cm", "Height_cm"]] # features
 label = df["Pichu-0_pikachu-1"] # label
 
+# Denna uppdelning är inte balanserad, vilket krävs i uppgiften.
 x_train,y_train, x_test, y_test = train_test_split(features, label, random_state = 26, test_size = 0.333)
 # Dela upp  tränings data i test och tränings data.
 
+# Nedan går att åstadkomma med reset_index()
 width_training = [x for x in x_train["Width_cm"]] # ordna deras index från noll 
 height_training = [x for x in x_train["Height_cm"]]
 label_training= [x for x in x_test]
@@ -113,7 +118,7 @@ prediction10 = [(clasify_point(10, width_training, height_training, label_traini
 
 prediction1 = [(clasify_point(1, width_training, height_training, label_training, x, y)) 
                       for x, y in zip(y_train["Width_cm"], y_train["Height_cm"])]
-
+# Det finns mycket bättre sätt att skriva ut en confusion matrix, se ConfusionMatrixDisplay :)
 con_accuraccy10 = confusion_matrix(prediction10, y_label)
 con_accuraccy1 = confusion_matrix(prediction1, y_label)
 print(f"performance based on majority of 10 nearest points\n", con_accuraccy10)
